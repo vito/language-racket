@@ -7,6 +7,21 @@ foldingStartMarker: "^\\s*[_A-z0-9]+@.+$"
 foldingStopMarker: "^.*(\\])[A-z ]*\\.$"
 patterns: [
   {
+    match: "(@;).*$\\n?"
+    captures:
+      "1":
+        name: "punctuation.definition.comment.scribble"
+    name: "comment.line.semicolon.scribble"
+  }
+  {
+    begin: "@;\\{"
+    captures:
+      "0":
+        name: "punctuation.definition.comment.scribble"
+    end: "\\}"
+    name: "comment.multiline.scribble"
+  }
+  {
     begin: "(?<!\\\\)(@)"
     end: "\\s|$|[\\.,]"
     beginCaptures:
