@@ -1,0 +1,12 @@
+{
+  "name": "language-racket",
+  "version": "0.0.0",
+  "description": "Syntax support for Racket language and the Scribble documentation tool",
+  "repository": "https://github.com/vito/language-racket",
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "dependencies": {
+  }
+}

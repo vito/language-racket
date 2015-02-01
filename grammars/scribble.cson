@@ -1,0 +1,294 @@
+name: "Scribble"
+scopeName: "source.scribble"
+fileTypes: [
+  "scrbl"
+]
+foldingStartMarker: "^\\s*[_A-z0-9]+@.+$"
+foldingStopMarker: "^.*(\\])[A-z ]*\\.$"
+patterns: [
+  {
+    begin: "(?<!\\\\)(@)"
+    end: "\\s|$|[\\.,]"
+    beginCaptures:
+      "1":
+        name: "punctuation.definition.special.scribble"
+    patterns: [
+      {
+        begin: "(emph)\\{"
+        end: "\\}"
+        beginCaptures:
+          "1":
+            name: "entity.name.tag.scribble"
+        contentName: "markup.emph.scribble"
+        patterns: [
+          {
+            include: "#nest_braces"
+          }
+          {
+            include: "$base"
+          }
+        ]
+      }
+      {
+        begin: "(bold)\\{"
+        end: "\\}"
+        beginCaptures:
+          "1":
+            name: "entity.name.tag.scribble"
+        contentName: "markup.bold.scribble"
+        patterns: [
+          {
+            include: "#nest_braces"
+          }
+          {
+            include: "$base"
+          }
+        ]
+      }
+      {
+        begin: "(verbatim|code)\\{"
+        end: "\\}"
+        beginCaptures:
+          "1":
+            name: "entity.name.tag.scribble"
+        contentName: "markup.raw.scribble"
+        patterns: [
+          {
+            include: "#nest_braces"
+          }
+          {
+            include: "$base"
+          }
+        ]
+      }
+      {
+        begin: "(verbatim|code)\\|\\{"
+        end: "\\}\\|"
+        beginCaptures:
+          "1":
+            name: "entity.name.tag.scribble"
+        contentName: "markup.raw.scribble"
+        patterns: [
+          {
+            include: "#nest_braces"
+          }
+          {
+            include: "$base"
+          }
+        ]
+      }
+      {
+        begin: "(hl|codeblock)\\{"
+        end: "\\}"
+        beginCaptures:
+          "1":
+            name: "entity.name.tag.scribble"
+        patterns: [
+          {
+            include: "#nest_braces_racket"
+          }
+          {
+            include: "source.racket"
+          }
+        ]
+      }
+      {
+        begin: "(hl|codeblock)\\|\\{"
+        end: "\\}\\|"
+        beginCaptures:
+          "1":
+            name: "entity.name.tag.scribble"
+        patterns: [
+          {
+            include: "#nest_braces_racket"
+          }
+          {
+            include: "source.racket"
+          }
+        ]
+      }
+      {
+        begin: "(section|title)\\{"
+        end: "\\}"
+        beginCaptures:
+          "1":
+            name: "entity.name.tag.scribble"
+        contentName: "markup.heading.scribble"
+        patterns: [
+          {
+            include: "#nest_braces"
+          }
+          {
+            include: "$base"
+          }
+        ]
+      }
+      {
+        begin: "(hyperlink|seclink)\\["
+        end: "\\]"
+        beginCaptures:
+          "1":
+            name: "entity.name.tag.scribble"
+        contentName: "markup.underline.link.scribble"
+        patterns: [
+          {
+            include: "#nest_brackets_racket"
+          }
+          {
+            include: "source.racket"
+          }
+        ]
+      }
+      {
+        begin: "([[:alpha:]_!@#%&*-./\\?:\\p{S}]+)\\{"
+        end: "\\}"
+        beginCaptures:
+          "1":
+            name: "entity.name.tag.scribble"
+        patterns: [
+          {
+            include: "#nest_braces"
+          }
+          {
+            include: "$base"
+          }
+        ]
+      }
+      {
+        begin: "([[:alpha:]_!@#%&*-./\\?:\\p{S}]+)\\("
+        end: "\\)"
+        beginCaptures:
+          "1":
+            name: "entity.name.tag.scribble"
+        patterns: [
+          {
+            include: "#nest_parens"
+          }
+          {
+            include: "source.racket"
+          }
+        ]
+      }
+      {
+        begin: "([[:alpha:]_!@#%&*-./\\?:\\p{S}]+)\\["
+        end: "\\]"
+        beginCaptures:
+          "1":
+            name: "entity.name.tag.scribble"
+        patterns: [
+          {
+            include: "#nest_brackets"
+          }
+          {
+            include: "source.racket"
+          }
+        ]
+      }
+      {
+        begin: "\\("
+        end: "\\)"
+        patterns: [
+          {
+            include: "#nest_parens"
+          }
+          {
+            include: "source.racket"
+          }
+        ]
+      }
+      {
+        include: "source.racket"
+      }
+    ]
+  }
+  {
+    match: "\\{|\\}"
+    name: "punctuation.section.scope.racket"
+  }
+  {
+    match: "\\[|\\]"
+    name: "punctuation.section.array.racket"
+  }
+  {
+    match: "\\(|\\)"
+    name: "punctuation.section.function.racket"
+  }
+]
+repository:
+  nest_parens:
+    begin: "\\("
+    end: "\\)"
+    patterns: [
+      {
+        include: "#nest_parens"
+      }
+      {
+        include: "$base"
+      }
+    ]
+  nest_brackets:
+    begin: "\\["
+    end: "\\]"
+    patterns: [
+      {
+        include: "#nest_brackets"
+      }
+      {
+        include: "$base"
+      }
+    ]
+  nest_brackets_racket:
+    begin: "\\["
+    end: "\\]"
+    patterns: [
+      {
+        include: "#nest_brackets_racket"
+      }
+      {
+        include: "source.racket"
+      }
+    ]
+  nest_braces:
+    begin: "\\{"
+    end: "\\}"
+    patterns: [
+      {
+        include: "#nest_braces"
+      }
+      {
+        include: "$base"
+      }
+    ]
+  nest_braces_racket:
+    begin: "\\{"
+    end: "\\}"
+    patterns: [
+      {
+        include: "#nest_braces_racket"
+      }
+      {
+        include: "source.racket"
+      }
+    ]
+  racket:
+    begin: "\\("
+    end: "\\)"
+    patterns: [
+      {
+        include: "#nest_parens"
+      }
+      {
+        include: "source.racket"
+      }
+    ]
+  nested:
+    begin: "\\{"
+    end: "\\}"
+    patterns: [
+      {
+        include: "#nest_braces"
+      }
+      {
+        include: "$base"
+      }
+    ]

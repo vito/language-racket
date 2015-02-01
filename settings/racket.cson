@@ -1,0 +1,18 @@
+".source.racket":
+  editor:
+    commentStart: ";"
+    increaseIndentPattern: '''
+      (?x)^ [ \t]*+ \(
+      	  (?<par>
+      	    ( [^()\n]++ | \( \g<par> \)? )*+
+      	  )
+      	$
+    '''
+    decreaseIndentPattern: '''
+      (?x)^ [ \t]*+
+      	  (?<par>
+      	    ( [^()\n]++ | \( \g<par> \) )*+
+      	  )
+      	  ( \) [ \t]*+ ) ++
+      	$
+    '''
