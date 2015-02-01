@@ -140,6 +140,22 @@ patterns: [
         ]
       }
       {
+        begin: "(itemlist)\\["
+        end: "\\]"
+        beginCaptures:
+          "1":
+            name: "entity.name.tag.scribble"
+        contentName: "markup.underline.link.scribble"
+        patterns: [
+          {
+            include: "#nest_brackets"
+          }
+          {
+            include: "$base"
+          }
+        ]
+      }
+      {
         begin: "([[:alpha:]_!@#%&*-./\\?:\\p{S}]+)\\{"
         end: "\\}"
         beginCaptures:
@@ -177,7 +193,7 @@ patterns: [
             name: "entity.name.tag.scribble"
         patterns: [
           {
-            include: "#nest_brackets"
+            include: "#nest_brackets_racket"
           }
           {
             include: "source.racket"
