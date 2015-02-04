@@ -23,7 +23,7 @@ patterns: [
   }
   {
     begin: "(?<!\\\\)(@)"
-    end: "\\s|$|[\\.,]"
+    end: "\\s|$|[\\.,\\)]"
     beginCaptures:
       "1":
         name: "punctuation.definition.special.scribble"
@@ -231,18 +231,6 @@ patterns: [
         include: "source.racket"
       }
     ]
-  }
-  {
-    match: "\\{|\\}"
-    name: "punctuation.section.scope.racket"
-  }
-  {
-    match: "\\[|\\]"
-    name: "punctuation.section.array.racket"
-  }
-  {
-    match: "\\(|\\)"
-    name: "punctuation.section.function.racket"
   }
 ]
 repository:
