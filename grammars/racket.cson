@@ -101,7 +101,7 @@ repository:
           (?x)
           						(?<=(\\(|\\[)) # preceded by ( or \[
           						( do|or|and|else|quasiquote|begin|if|case|set!|
-          						  cond|let|unquote|define(-datatype)*|let\\*|unquote-splicing|delay|
+          						  cond|let|unquote|define(-datatype|-struct|-values)*|let\\*|unquote-splicing|delay|
           						  letrec)
           						(?=(\\s|\\())
         '''
