@@ -25,6 +25,7 @@ fileTypes: [
   "rkt"
   "￿"
 ]
+'firstLineMatch': '^#!\\s*/.*\\bracket'
 foldingStartMarker: '''
   (?x)^ [ \t]* \(
   	  (?<par>
