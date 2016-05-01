@@ -396,7 +396,7 @@ repository:
         begin: '''
           (?x)
           						(?<=\\() # preceded by (
-          						(lambda)\\s+
+          						(lambda|λ)\\s+
           						(\\() # opening paren
           						((?:
           						  ([[:alnum:]][[:alnum:]!$%&*+-./:<=>?@^_~]*|[._])
