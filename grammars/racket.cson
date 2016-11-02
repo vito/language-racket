@@ -79,7 +79,7 @@ repository:
   constants:
     patterns: [
       {
-        match: "#[t|f]"
+        match: "#(t(rue)?|f(alse)?)"
         name: "constant.language.boolean.racket"
       }
       {
